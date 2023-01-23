@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class ProgramaMe23 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String dates = null;
+		int numcasos = 0;
+		printS("Insereix el numero de casos.");
+		numcasos = sc.nextInt();
+		while (numcasos > 0) {
+			printS("Insereix les 3 dates:");
+			int[] array = cadena_int(dates);
+			int a = array[0];
+			int b = array[1];
+			int c = array[2];
+			if (hiha0 (a,b,c)) {
+				printS("No pot contenir el numero 0");
+			} else {
+				int dif1 = b - a;
+				int dif2 = c - b;
+				if (pasaper0ab(a,b)) {
+					dif1 -= 1;
+				}
+				if (pasaper0bc(b,c)) {
+					dif2 -= 1;
+				}
+				if (dif1 < dif2) {
+					printS("El numero més proper és: " + a);
+				} else if (dif2 < dif1) {
+					printS("El numero més proper és: " + c);
+				} else {
+					printS("Hi ha un empat");
+				}
+			}
+			numcasos -= 1;
+		}
+	}
+	
+	
+//Imprimeix string
+public static void printS(String string) {
+	System.out.println(string);
+}
+//Separa els espais de la cadena "dates"
+public static int[] cadena_int(String dates) {
+	Scanner sc = new Scanner(System.in);
+	String s[]= sc.nextLine().split(" ");
+	int a[] = new int [s.length];
+	for(int i =0 ;i < s.length;i++){
+	    a[i]= Integer.parseInt(s[i]);
+	}
+	return a;
+ }
+//Comprova si alguna de les dates és un 0
+public static boolean hiha0 (int a, int b, int c) {
+	boolean hiha = false;
+	if (a == 0 || b == 0 || c == 0) {
+		hiha = true;
+	}
+	return hiha;
+}
+//Comprova si els numeros pasen per el 0
+public static boolean pasaper0ab (int a, int b) {
+	boolean pasa = false;
+	if (a < 0 && b > 0){
+		pasa = true;
+	}
+	return pasa;
+}
+public static boolean pasaper0bc (int b, int c) {
+	boolean pasa = false;
+	if (c > 0 && b < 0){
+		pasa = true;
+	}
+	return pasa;
+}
+}
